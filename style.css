@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Helvetica', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.row {
+  text-align: center;
+  height: 100px;
+  font-size: 0;   /* removes gap */
+}
+
+/*make responsive*/
+.square {
+  display: inline-block;
+  font-size: 16px;
+  width: 100px;
+  height: 100px;
+  /*border: 1px solid deepPink;*/
+}
+
+.col-1 {
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.col-2 {
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.col-3 {
+  border-bottom: 3px solid black;
+}
+
+.row-3 .col-1,
+.row-3 .col-2,
+.row-3 .col-3 {
+  border-bottom: none;
+}
+
+.col-1:hover,
+.col-2:hover,
+.col-3:hover {
+  background-color: blue;
+}
