@@ -2,28 +2,15 @@ console.log('tic tac toe');
 
 var player1 = 'X';
 var player2 = 'O';
-var currentPlayer;
+var currentPlayer = player1;
 
 var player1Score = 0;
 var player2Score = 0;
-var counter = 0;
-
-const TOTAL_ROUNDS = 5;
-const WINNING_SCORE = 3;
+var winner;
 
 var board = [['E', 'E', 'E'],
             ['E', 'E', 'E'],
             ['E', 'E', 'E']];
-
-var b1 = board[0][0];
-var b2 = board[0][1];
-var b3 = board[0][2];
-var b4 = board[1][0];
-var b5 = board[1][1];
-var b6 = board[1][2];
-var b7 = board[2][0];
-var b8 = board[2][1];
-var b8 = board[2][2];
 
 // squares
 var s1 = document.getElementById('S1');
@@ -36,56 +23,81 @@ var s7 = document.getElementById('S7');
 var s8 = document.getElementById('S8');
 var s9 = document.getElementById('S9');
 
-// code player1 first
-currentPlayer = player1;
+// make event listeners
+var updateGame = function() {
+  if ( isEmpty() ) {
+    // console.log('yes');
+    recordMove();
+    changeDOM();
+    // console.log('currentplayer: ' + currentPlayer);
+    // console.log('event target id: ' + event.target.id);
+    console.table(board);
+    changePlayer();
 
-var checkEmpty = function() {
+    if ( checkWin() ) {
+      declareWinner();
+      resetGame();  // setTimeout
+    } else {
+      return false;
+    }
+
+  } else {
+    return false;
+    return console.log('false, not updated')
+  };
+};
+
+function makeEventListeners() {
+  var squares = document.getElementsByClassName('square');
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', updateGame);
+  };
+};
+
+makeEventListeners();
+
+var isEmpty = function() {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board.length; j++) {
       if (board[i][j] === 'E') {
         return true;
       } else {
-        return false;
       };
     };
   };
+  return false;
 };
 
 var recordMove = function() {
   var target = event.target.id;
 
   if (target === 'S1') {
-    b1 = currentPlayer;
+    return board[0][0] = currentPlayer;
   };
   if (target === 'S2') {
-    b2 = currentPlayer;
+    return board[0][1] = currentPlayer;
   };
   if (target === 'S3') {
-    b3 = currentPlayer;
+    return board[0][2] = currentPlayer;
   };
   if (target === 'S4') {
-    b4 = currentPlayer;
+    return board[1][0] = currentPlayer;
   };
   if (target === 'S5') {
-    b5 = currentPlayer;
+    return board[1][1] = currentPlayer;
   };
   if (target === 'S6') {
-    b6 = currentPlayer;
+    return board[1][2] = currentPlayer;
   };
   if (target === 'S7') {
-    b7 = currentPlayer;
+    return board[2][0] = currentPlayer;
   };
   if (target === 'S8') {
-    b8 = currentPlayer;
+    return board[2][1] = currentPlayer;
   };
   if (target === 'S9') {
-    b9 = currentPlayer;
+    return board[2][2] = currentPlayer;
   };
-
-  changeDOM();
-  console.log('currentplayer: ' + currentPlayer);
-  console.log('event target id: ' + event.target.id);
-  console.log(board);
 };
 
 // temp
@@ -106,103 +118,92 @@ var changePlayer = function() {
   };
 };
 
-// need to fix
-var checkGameWin = function() {
-  if (player1Score === WINNING_SCORE) {
-    winner = player1;
-    // reset game
-  } else if (player2Score === WINNING_SCORE) {
-    winner = player2;
-    // reset game
+// rethhink
+var checkWin = function() {
+
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board.length; j++) {
+      // to determine if a win condition has occured
+      if (board[i][i] !== 'E') {
+
+        switch (...) {
+          // row wins
+          case board[0][0] === board[0][1] && board[0][0] === board[0][2]:
+              console.log('check win switch works');
+              console.log('winner 1 block executed');
+              winner = board[0][0];
+              break;
+          case board[1][0] === board[1][1] && board[1][0] === board[1][2]:
+              winner = board[1][0];
+              break;
+          case board[2][0] === board[2][1] && board[2][0] === board[2][2]:
+              winner = board[2][0];
+              break;
+          // column wins
+          case board[0][0] === board[1][0] && board[0][0] === board[2][0]:
+              winner = board[0][0];
+              break;
+          case board[0][1] === board[1][1] && board[0][1] === board[2][1]:
+              winner = board[0][1];
+              break;
+          case board[0][2] === board[1][2] && board[0][2] === board[2][2]:
+              winner = board[0][2];
+              break;
+          // diagonal wins
+          case board[0][0] === board[1][1] && board[0][0] === board[2][2]:
+              winner = board[0][0];
+              break;
+          case board[0][2] === board[1][1] && board[0][2] === board[2][0]:
+              winner = board[0][2];
+              break;
+          default:
+          console.log('winner = false');
+              return winner = false;
+        };
+
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
+
+var declareWinner = function() {
+  console.log('declareWinner works');
+  if (winner === 'X') {
+    player1Score += 1;
+    document.getElementById('message').innerHTML = 'Player 1 Wins!';
+    document.getElementById('score-P2').textContent = player1Score;
   } else {
-    console.log('it\'s a draw')
-  };
+    player2Score += 1;
+    document.getElementById('message').innerHTML = 'Player 2 Wins!';
+    document.getElementById('score-P2').textContent = player2Score;
+  }
 };
 
-// make event listeners
-var events = function() {
-  checkEmpty();
-  recordMove();
-  changeDOM();
-  changePlayer();
-  checkMatchWin();
-  if (counter > 2) {
-    checkGameWin();
+var resetGame = function() {
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board.length; j++) {
+      board[i][j] = 'E';
+    };
   };
+  console.table(board);
+  // clear all squares - DOM
 
+  // play again prompt - DOM
 
-}
-
-function makeEventListeners() {
-  // var squares = document.getElementsByClassName('square'); // returns array
-  // need turn complex into primitive data type or work out closures ??
-  // for (var i = 0; i < squares.length; i++) {
-    s1.addEventListener('click', events);
-    s2.addEventListener('click', events);
-    s3.addEventListener('click', events);
-    s4.addEventListener('click', events);
-    s5.addEventListener('click', events);
-    s6.addEventListener('click', events);
-    s7.addEventListener('click', events);
-    s8.addEventListener('click', events);
-    s9.addEventListener('click', events);
-  // };
 };
 
-makeEventListeners();
-
-// declare winner
-// reset game - plays 3-5 times
-// check round
-// update scoreboard
 
 
+// criteria
+// Design logic for winning & visually display which player won
+// DRY (Don't Repeat Yourself)
+// Use Javascript or jQuery for DOM manipulation - change classes
+// Deploy your game online
 
-
-
-// winning combinations - need to fix
-// game needs to reset
-var checkMatchWin = function() {
-  // rows
-  if (b1 === b2 && b1 == b3) {
-    win = true;
-    // console.log('win');
-  }
-  else if (b4 === b5 && b4 == b6) {
-    win = true;
-    // console.log('win');
-  }
-  else if (b7 === b8 && b7 === b9) {
-    win = true;
-    // console.log('win');
-  }
-  // columns
-  else if (b1 === b4 && b1 === b7) {
-    win = true;
-    // console.log('win');
-  }
-  else if (b2 === b5 && b2 === b8) {
-    win = true;
-    // console.log('win');
-  }
-  else if (b3 === b6 && b3 === b9) {
-    win = true;
-    // console.log('win');
-  }
-  //diagonals
-  else if (b1 === b5 && b1 === b9) {
-    win = true;
-    // console.log('win');
-  }
-  else if (b3 === b5 && b3 === b7) {
-    win = true;
-    // console.log('win');
-  }
-  else {
-    win = false;
-    console.log('lose');
-    console.log(counter);
-  }
-  console.log(counter);
-  return counter += 1;
-}
+// Deliverables
+// A link to your hosted working game in the URL section of your GitHub repo
+// A readme.md file with explanations of the technologies used, the approach taken,
+// installation instructions, unsolved problems, etc.
