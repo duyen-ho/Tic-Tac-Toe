@@ -96,7 +96,7 @@ var changeDOM = function() {
   if (currentPlayer === player2) {
     event.target.textContent = 'O';
     event.target.style.color = '#1F2593';
-    event.target.style.backgroundColor = 'pink';
+    event.target.style.backgroundColor = 'transparent';
   };
 };
 
@@ -153,24 +153,10 @@ var resetGame = function() {
 };
 
 var clearSquares = function() {
-  s1.textContent = '';
-  s2.textContent = '';
-  s3.textContent = '';
-  s4.textContent = '';
-  s5.textContent = '';
-  s6.textContent = '';
-  s7.textContent = '';
-  s8.textContent = '';
-  s9.textContent = '';
-  s1.style.backgroundColor = '';
-  s2.style.backgroundColor = '';
-  s3.style.backgroundColor = '';
-  s4.style.backgroundColor = '';
-  s5.style.backgroundColor = '';
-  s6.style.backgroundColor = '';
-  s7.style.backgroundColor = '';
-  s8.style.backgroundColor = '';
-  s9.style.backgroundColor = '';
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].innerHTML = '';
+    squares[i].backgroundColor = '';
+  };
 };
 
 var button = document.getElementById('button');
