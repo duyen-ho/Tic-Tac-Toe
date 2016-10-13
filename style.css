@@ -1,6 +1,13 @@
 * {
   box-sizing: border-box;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  /*background-color: #FEC1BE;*/
+  background-color: #f2f1f1;
+  color: #1F2593;
+}
+
+body {
+  margin: 40px 50px;
 }
 
 h1 {
@@ -8,33 +15,65 @@ h1 {
   font-size: 3em;
 }
 
+.grid {
+  clear: both;
+  margin: 200px auto;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background-color: #1F2593;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  /*font-family: 'Quicksand', sans-serif;*/
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color: #66cc66;
+}
+
 .row {
   text-align: center;
-  height: 100px;
+  height: 150px;
   font-size: 0;   /* removes gap */
 }
 
 /*make responsive*/
 .square {
   display: inline-block;
-  font-size: 16px;
-  width: 100px;
-  height: 100px;
+  font-size: 100px;
+  width: 150px;
+  height: 150px;
+  line-height: 1.5;
   /*border: 1px solid deepPink;*/
 }
 
 .col-1 {
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  /*border-radius: 1px;*/
 }
 
 .col-2 {
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid #fff;
 }
 
 .col-3 {
-  border-bottom: 3px solid black;
+  border-bottom: 5px solid #fff;
 }
 
 .row-3 .col-1,
@@ -43,8 +82,31 @@ h1 {
   border-bottom: none;
 }
 
-.col-1:hover,
-.col-2:hover,
-.col-3:hover {
-  background-color: blue;
+.square:hover {
+  background-color: #1F2593;
+  color: #fff;
+}
+
+.scores {
+  display: block;
+}
+
+.player-1 {
+  float: left;
+  text-align: left;
+}
+
+.player-2 {
+  float: right;
+  text-align: right;
+}
+
+.message {
+  /*clear: both;*/
+  text-align: center;
+  /*margin-top: 50px;*/
+}
+
+#message {
+  margin: 0 0 2em;
 }

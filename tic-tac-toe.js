@@ -1,5 +1,3 @@
-console.log('tic tac toe');
-
 var player1 = 'X';
 var player2 = 'O';
 var currentPlayer = player1;
@@ -26,7 +24,7 @@ var s9 = document.getElementById('S9');
 // make event listeners
 var updateGame = function() {
   if ( isEmpty() ) {
-    // console.log('yes');
+    // console.log('works');
     recordMove();
     changeDOM();
     // console.log('currentplayer: ' + currentPlayer);
@@ -34,7 +32,8 @@ var updateGame = function() {
     console.table(board);
     changePlayer();
 
-    if ( checkWin() ) {
+    // restructure
+    if ( checkWin(currentPlayer) ) {
       declareWinner();
       resetGame();  // setTimeout
     } else {
@@ -47,8 +46,10 @@ var updateGame = function() {
   };
 };
 
+var squares = document.getElementsByClassName('square');
+
+
 function makeEventListeners() {
-  var squares = document.getElementsByClassName('square');
   for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', updateGame);
   };
@@ -103,10 +104,14 @@ var recordMove = function() {
 // temp
 var changeDOM = function() {
   if (currentPlayer === player1) {
-    event.target.style.backgroundColor = 'pink';
+    event.target.textContent = 'X';
+    event.target.style.color = 'pink';
+
   };
   if (currentPlayer === player2) {
-    event.target.style.backgroundColor = 'blue';
+    event.target.textContent = 'O';
+    event.target.style.color = '#1F2593';
+    // event.target.style.backgroundColor = '';
   };
 };
 
@@ -118,56 +123,37 @@ var changePlayer = function() {
   };
 };
 
-// rethhink
-var checkWin = function() {
-
-  for (var i = 0; i < board.length; i++) {
-    for (var j = 0; j < board.length; j++) {
-      // to determine if a win condition has occured
-      if (board[i][i] !== 'E') {
-
-        switch (...) {
+// re-think
+var checkWin = function(currentPlayer) {
+  if (currentPlayer) {
+    // to determine if a win condition has occured
           // row wins
-          case board[0][0] === board[0][1] && board[0][0] === board[0][2]:
-              console.log('check win switch works');
-              console.log('winner 1 block executed');
-              winner = board[0][0];
-              break;
-          case board[1][0] === board[1][1] && board[1][0] === board[1][2]:
-              winner = board[1][0];
-              break;
-          case board[2][0] === board[2][1] && board[2][0] === board[2][2]:
-              winner = board[2][0];
-              break;
+    if (  (board[0][0] === board[0][1] && board[0][0] === board[0][2]) &&
+          (board[0][0] === currentPlayer) ||
+          (board[1][0] === board[1][1] && board[1][0] === board[1][2]) &&
+          (board[1][0] === currentPlayer) ||
+          (board[2][0] === board[2][1] && board[2][0] === board[2][2]) &&
+          (board[2][0] === currentPlayer) ||
           // column wins
-          case board[0][0] === board[1][0] && board[0][0] === board[2][0]:
-              winner = board[0][0];
-              break;
-          case board[0][1] === board[1][1] && board[0][1] === board[2][1]:
-              winner = board[0][1];
-              break;
-          case board[0][2] === board[1][2] && board[0][2] === board[2][2]:
-              winner = board[0][2];
-              break;
+          (board[0][0] === board[1][0] && board[0][0] === board[2][0]) &&
+          (board[0][0] === currentPlayer) ||
+          (board[0][1] === board[1][1] && board[0][1] === board[2][1]) &&
+          (board[0][1] === currentPlayer) ||
+          (board[0][2] === board[1][2] && board[0][2] === board[2][2]) &&
+          (board[0][2] === currentPlayer) ||
           // diagonal wins
-          case board[0][0] === board[1][1] && board[0][0] === board[2][2]:
-              winner = board[0][0];
-              break;
-          case board[0][2] === board[1][1] && board[0][2] === board[2][0]:
-              winner = board[0][2];
-              break;
-          default:
-          console.log('winner = false');
-              return winner = false;
-        };
-
-      } else {
+          (board[0][0] === board[1][1] && board[0][0] === board[2][2]) &&
+          (board[0][0] === currentPlayer) ||
+          (board[0][2] === board[1][1] && board[0][2] === board[2][0]) &&
+          (board[0][0] === currentPlayer) ) {
+        winner = currentPlayer;
+        console.log('winner: ' + currentPlayer);
+    } else {
+        console.log('winner: false');
         return false;
-      }
-    }
-  }
-}
-
+    };
+  };
+};
 
 var declareWinner = function() {
   console.log('declareWinner works');
@@ -190,10 +176,18 @@ var resetGame = function() {
   };
   console.table(board);
   // clear all squares - DOM
-
+  clearSquares();
   // play again prompt - DOM
 
 };
+
+var clearSquares = function() {
+  squares.textContent = '';
+  console.log('btn works');
+}
+
+var button = document.getElementById('button');
+button.addEventListener('click', clearSquares);
 
 
 

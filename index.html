@@ -2,51 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 
   </head>
   <body>
 
-  <div class="game-board">
+    <section class="scores">
+      <div class="player-1">
+        <h2 class="left">X</h2>
+        <p>Score:
+          <span id="score-P1">0</span>
+        </p>
+      </div>
+      <div class="player-2">
+        <h2 class="right">O</h2>
+        <p>Score:
+          <span id="score-P2">0</span>
+        </p>
+      </div>
+    </section>
 
-    <h1>Tic Tac Toe</h1>
+    <section class="grid">
+      <!-- <h1>Tic Tac Toe</h1> -->
+      <div class="row row-1">
+        <div id="S1" class="square col-1">T</div>
+        <div id="S2" class="square col-2">I</div>
+        <div id="S3" class="square col-3">C</div>
+      </div>
+      <div class="row row-2">
+        <div id="S4" class="square col-1">T</div>
+        <div id="S5" class="square col-2">A</div>
+        <div id="S6" class="square col-3">C</div>
+      </div>
+      <div class="row row-3">
+        <div id="S7" class="square col-1">T</div>
+        <div id="S8" class="square col-2">O</div>
+        <div id="S9" class="square col-3">E</div>
+      </div>
+    </section>
 
-    <div class="row row-1">
-      <div id="S1" class="square col-1"></div>
-      <div id="S2" class="square col-2"></div>
-      <div id="S3" class="square col-3"></div>
-    </div>
-    <div class="row row-2">
-      <div id="S4" class="square col-1"></div>
-      <div id="S5" class="square col-2"></div>
-      <div id="S6" class="square col-3"></div>
-    </div>
-    <div class="row row-3">
-      <div id="S7" class="square col-1"></div>
-      <div id="S8" class="square col-2"></div>
-      <div id="S9" class="square col-3"></div>
-    </div>
 
-    <div class="player">
-      <h2>Player X:</h2>
-      <p>Score:
-        <span id="score-P1">0</span>
-      </p>
-    </div>
+    <section class="message">
+      <p id="message">●_●</p>
+      <button id="button">Start</button>
+    </section>
 
-    <div class="player">
-      <h2>Player O</h2>
-      <p>Score:
-        <span id="score-P2">0</span>
-      </p>
-    </div>
-
-    <div id="message">TEST MESSAGE</div>
-
-    <button>Reset</button>
-
-  </div>
 
     <script src="tic-tac-toe.js"></script>
   </body>
