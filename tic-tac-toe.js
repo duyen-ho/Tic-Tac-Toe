@@ -24,25 +24,16 @@ var s9 = document.getElementById('S9');
 // make event listeners
 var updateGame = function() {
   if ( isEmpty() ) {
-    // console.log('works');
     recordMove();
     changeDOM();
-    // console.log('currentplayer: ' + currentPlayer);
-    // console.log('event target id: ' + event.target.id);
     console.table(board);
-    changePlayer();
 
-    // restructure
-    if ( checkWin(currentPlayer) ) {
+    if ( checkWin() ) {
       declareWinner();
       resetGame();  // setTimeout
     } else {
-      return false;
-    }
-
-  } else {
-    return false;
-    return console.log('false, not updated')
+      changePlayer();
+    };
   };
 };
 
@@ -111,7 +102,7 @@ var changeDOM = function() {
   if (currentPlayer === player2) {
     event.target.textContent = 'O';
     event.target.style.color = '#1F2593';
-    // event.target.style.backgroundColor = '';
+    event.target.style.backgroundColor = 'pink';
   };
 };
 
@@ -124,43 +115,37 @@ var changePlayer = function() {
 };
 
 // re-think
-var checkWin = function(currentPlayer) {
-  if (currentPlayer) {
-    // to determine if a win condition has occured
-          // row wins
-    if (  (board[0][0] === board[0][1] && board[0][0] === board[0][2]) &&
-          (board[0][0] === currentPlayer) ||
-          (board[1][0] === board[1][1] && board[1][0] === board[1][2]) &&
-          (board[1][0] === currentPlayer) ||
-          (board[2][0] === board[2][1] && board[2][0] === board[2][2]) &&
-          (board[2][0] === currentPlayer) ||
-          // column wins
-          (board[0][0] === board[1][0] && board[0][0] === board[2][0]) &&
-          (board[0][0] === currentPlayer) ||
-          (board[0][1] === board[1][1] && board[0][1] === board[2][1]) &&
-          (board[0][1] === currentPlayer) ||
-          (board[0][2] === board[1][2] && board[0][2] === board[2][2]) &&
-          (board[0][2] === currentPlayer) ||
-          // diagonal wins
-          (board[0][0] === board[1][1] && board[0][0] === board[2][2]) &&
-          (board[0][0] === currentPlayer) ||
-          (board[0][2] === board[1][1] && board[0][2] === board[2][0]) &&
-          (board[0][0] === currentPlayer) ) {
-        winner = currentPlayer;
-        console.log('winner: ' + currentPlayer);
-    } else {
-        console.log('winner: false');
-        return false;
-    };
+var checkWin = function() {
+  // to determine if a win condition has occured
+        // row wins
+  if (  ( (board[0][0] === board[0][1]) && (board[0][1] === board[0][2]) && (board[0][2] === currentPlayer) ) ||
+            ( (board[1][0] === board[1][1]) && (board[1][1] === board[1][2]) && (board[1][2] === currentPlayer) ) ||
+            ( (board[2][0] === board[2][1]) && (board[2][1] === board[2][2]) && (board[2][2] === currentPlayer) ) ||
+            // column wins
+            ( (board[0][0] === board[1][0]) && (board[1][0] === board[2][0]) && (board[2][0] === currentPlayer) ) ||
+            ( (board[0][1] === board[1][1]) && (board[1][1] === board[2][1]) && (board[2][1] === currentPlayer) ) ||
+            ( (board[0][2] === board[1][2]) && (board[1][2] === board[2][2]) && (board[2][2] === currentPlayer) ) ||
+            // diagonal wins
+            ( (board[0][0] === board[1][1]) && (board[1][1] === board[2][2]) && (board[2][2] === currentPlayer) ) ||
+            ( (board[0][2] === board[1][1]) && (board[1][1] === board[2][0]) && (board[2][0] === currentPlayer) ) ) {
+      winner = currentPlayer;
+      return true;
+      console.log('winner: ' + currentPlayer);
+      // alert('winner is: ' + currentPlayer);
+  } else {
+      console.log('winner: false');
+      return false;
   };
 };
+//
 
 var declareWinner = function() {
-  console.log('declareWinner works');
+  // console.log('declareWinner works');
+
   if (winner === 'X') {
     player1Score += 1;
     document.getElementById('message').innerHTML = 'Player 1 Wins!';
-    document.getElementById('score-P2').textContent = player1Score;
+    document.getElementById('score-P1').textContent = player1Score;
   } else {
     player2Score += 1;
     document.getElementById('message').innerHTML = 'Player 2 Wins!';
@@ -174,17 +159,35 @@ var resetGame = function() {
       board[i][j] = 'E';
     };
   };
+  console.log('reset');
   console.table(board);
   // clear all squares - DOM
-  clearSquares();
+  setTimeout(clearSquares, 2000);
   // play again prompt - DOM
-
 };
 
+// not working
 var clearSquares = function() {
-  squares.textContent = '';
+  s1.textContent = '';
+  s2.textContent = '';
+  s3.textContent = '';
+  s4.textContent = '';
+  s5.textContent = '';
+  s6.textContent = '';
+  s7.textContent = '';
+  s8.textContent = '';
+  s9.textContent = '';
+  s1.style.backgroundColor = '';
+  s2.style.backgroundColor = '';
+  s3.style.backgroundColor = '';
+  s4.style.backgroundColor = '';
+  s5.style.backgroundColor = '';
+  s6.style.backgroundColor = '';
+  s7.style.backgroundColor = '';
+  s8.style.backgroundColor = '';
+  s9.style.backgroundColor = '';
   console.log('btn works');
-}
+};
 
 var button = document.getElementById('button');
 button.addEventListener('click', clearSquares);
