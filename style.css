@@ -10,21 +10,6 @@ body {
   margin: 40px 50px;
 }
 
-h1 {
-  text-align: center;
-  font-size: 3em;
-}
-
-.grid {
-  clear: both;
-  margin: 200px auto;
-}
-
-h1 {
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-}
-
 button {
   padding: 10px 20px;
   font-size: 1em;
@@ -34,15 +19,11 @@ button {
   color: #fff;
   cursor: pointer;
   border: none;
-  /*font-family: 'Quicksand', sans-serif;*/
 }
 
-button:focus {
-  outline: 0;
-}
-
-button:hover {
-  background-color: #66cc66;
+.grid {
+  clear: both;
+  margin: 200px auto;
 }
 
 .row {
@@ -64,7 +45,6 @@ button:hover {
 .col-1 {
   border-right: 5px solid #fff;
   border-bottom: 5px solid #fff;
-  /*border-radius: 1px;*/
 }
 
 .col-2 {
@@ -82,11 +62,6 @@ button:hover {
   border-bottom: none;
 }
 
-.square:hover {
-  background-color: #1F2593;
-  color: #fff;
-}
-
 .scores {
   display: block;
 }
@@ -102,11 +77,19 @@ button:hover {
 }
 
 .message {
-  /*clear: both;*/
   text-align: center;
-  /*margin-top: 50px;*/
+  margin: 0 0 2em;
 }
 
-#message {
-  margin: 0 0 2em;
+.square:hover {
+  background-color: #1F2593;
+  color: #fff;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color: #66cc66;
 }

@@ -21,16 +21,13 @@ var s7 = document.getElementById('S7');
 var s8 = document.getElementById('S8');
 var s9 = document.getElementById('S9');
 
-// make event listeners
 var updateGame = function() {
   if ( isEmpty() ) {
     recordMove();
     changeDOM();
-    console.table(board);
-
     if ( checkWin() ) {
       declareWinner();
-      resetGame();  // setTimeout
+      resetGame();
     } else {
       changePlayer();
     };
@@ -38,7 +35,6 @@ var updateGame = function() {
 };
 
 var squares = document.getElementsByClassName('square');
-
 
 function makeEventListeners() {
   for (var i = 0; i < squares.length; i++) {
@@ -92,12 +88,10 @@ var recordMove = function() {
   };
 };
 
-// temp
 var changeDOM = function() {
   if (currentPlayer === player1) {
     event.target.textContent = 'X';
     event.target.style.color = 'pink';
-
   };
   if (currentPlayer === player2) {
     event.target.textContent = 'O';
@@ -114,7 +108,6 @@ var changePlayer = function() {
   };
 };
 
-// re-think
 var checkWin = function() {
   // to determine if a win condition has occured
         // row wins
@@ -128,20 +121,14 @@ var checkWin = function() {
             // diagonal wins
             ( (board[0][0] === board[1][1]) && (board[1][1] === board[2][2]) && (board[2][2] === currentPlayer) ) ||
             ( (board[0][2] === board[1][1]) && (board[1][1] === board[2][0]) && (board[2][0] === currentPlayer) ) ) {
-      winner = currentPlayer;
-      return true;
-      console.log('winner: ' + currentPlayer);
-      // alert('winner is: ' + currentPlayer);
+      return winner = currentPlayer;
   } else {
       console.log('winner: false');
       return false;
   };
 };
-//
 
 var declareWinner = function() {
-  // console.log('declareWinner works');
-
   if (winner === 'X') {
     player1Score += 1;
     document.getElementById('message').innerHTML = 'Player 1 Wins!';
@@ -159,14 +146,12 @@ var resetGame = function() {
       board[i][j] = 'E';
     };
   };
-  console.log('reset');
-  console.table(board);
   // clear all squares - DOM
   setTimeout(clearSquares, 2000);
-  // play again prompt - DOM
+  // play again - DOM
+
 };
 
-// not working
 var clearSquares = function() {
   s1.textContent = '';
   s2.textContent = '';
@@ -186,7 +171,6 @@ var clearSquares = function() {
   s7.style.backgroundColor = '';
   s8.style.backgroundColor = '';
   s9.style.backgroundColor = '';
-  console.log('btn works');
 };
 
 var button = document.getElementById('button');
