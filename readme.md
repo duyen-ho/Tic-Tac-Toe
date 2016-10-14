@@ -1,4 +1,4 @@
-# Project #1: Tic Tac Toe
+# Project 1: Tic Tac Toe
 
 This project was coded in Javascript, HTML and CSS.
 
