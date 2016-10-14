@@ -10,17 +10,6 @@ var board = [['E', 'E', 'E'],
             ['E', 'E', 'E'],
             ['E', 'E', 'E']];
 
-// squares
-var s1 = document.getElementById('S1');
-var s2 = document.getElementById('S2');
-var s3 = document.getElementById('S3');
-var s4 = document.getElementById('S4');
-var s5 = document.getElementById('S5');
-var s6 = document.getElementById('S6');
-var s7 = document.getElementById('S7');
-var s8 = document.getElementById('S8');
-var s9 = document.getElementById('S9');
-
 var updateGame = function() {
   if ( isEmpty() ) {
     recordMove();
@@ -34,9 +23,10 @@ var updateGame = function() {
   };
 };
 
+// when i move this line down with the other DOM elements, makeEventListeners won't run ?
 var squares = document.getElementsByClassName('square');
 
-function makeEventListeners() {
+var makeEventListeners = function() {
   for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', updateGame);
   };
@@ -123,7 +113,6 @@ var checkWin = function() {
             ( (board[0][2] === board[1][1]) && (board[1][1] === board[2][0]) && (board[2][0] === currentPlayer) ) ) {
       return winner = currentPlayer;
   } else {
-      console.log('winner: false');
       return false;
   };
 };
@@ -131,11 +120,11 @@ var checkWin = function() {
 var declareWinner = function() {
   if (winner === 'X') {
     player1Score += 1;
-    document.getElementById('message').innerHTML = 'Player 1 Wins!';
+    message.innerHTML = 'Player 1 Wins!';
     document.getElementById('score-P1').textContent = player1Score;
   } else {
     player2Score += 1;
-    document.getElementById('message').innerHTML = 'Player 2 Wins!';
+    message.innerHTML = 'Player 2 Wins!';
     document.getElementById('score-P2').textContent = player2Score;
   }
 };
@@ -147,7 +136,9 @@ var resetGame = function() {
     };
   };
   // clear all squares - DOM
-  setTimeout(clearSquares, 2000);
+  setTimeout(function() {
+    message.textContent = 'Play again';
+    clearSquares}, 2000);
   // play again - DOM
 
 };
@@ -159,10 +150,23 @@ var clearSquares = function() {
   };
 };
 
+
+
 var button = document.getElementById('button');
 button.addEventListener('click', clearSquares);
 
+// squares
+var s1 = document.getElementById('S1');
+var s2 = document.getElementById('S2');
+var s3 = document.getElementById('S3');
+var s4 = document.getElementById('S4');
+var s5 = document.getElementById('S5');
+var s6 = document.getElementById('S6');
+var s7 = document.getElementById('S7');
+var s8 = document.getElementById('S8');
+var s9 = document.getElementById('S9');
 
+var message = document.getElementById('message');
 
 // criteria
 // Design logic for winning & visually display which player won
