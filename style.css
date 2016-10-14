@@ -1,18 +1,18 @@
 * {
   box-sizing: border-box;
   background-color: #f2f1f1;
-  color: #1F2593;
+  color: #1f2593;
   font-family: 'Quicksand', sans-serif;
 }
 
 body {
-  margin: 20px 50px;
+  margin: 0 50px;
 }
 
 button {
-  margin: 40px 0;
+  margin: 20px 0;
   padding: 10px 20px;
-  background-color: #1F2593;
+  background-color: #1f2593;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -28,11 +28,10 @@ button {
 
 .row {
   height: 150px;
-  font-size: 0;   /* removes gap */
+  font-size: 0;
   text-align: center;
 }
 
-/*make responsive*/
 .square {
   display: inline-block;
   width: 150px;
@@ -82,8 +81,12 @@ button {
   text-align: center;
 }
 
+#message {
+  font-size: 1.5em;
+}
+
 .square:hover {
-  background-color: #1F2593;
+  background-color: #1f2593;
   color: #fff;
 }
 
@@ -92,5 +95,6 @@ button:focus {
 }
 
 button:hover {
-  background-color: #66cc66;
+  background-color: pink;
+  color: #fff;
 }
