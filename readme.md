@@ -1,8 +1,6 @@
-# Project #1: Tic Tac Toe
+# Project 1: Tic Tac Toe
 
 This project was coded in Javascript, HTML and CSS.
-
-### Approach
 
 Separation of concerns and code design were the approaches taken to solve the problem.
 
@@ -16,4 +14,5 @@ Separation of concerns and code design were the approaches taken to solve the pr
 * Make the Start/Reset button relevant
 * Code better
 
+  
 [Play Game](https://duyen-ho.github.io/Tic-Tac-Toe/)
