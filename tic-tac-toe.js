@@ -133,19 +133,21 @@ var changeDOM = function() {
   if (currentPlayer === player1) {
     event.target.textContent = 'X';
     event.target.style.color = 'pink';
+    message.textContent = player2 + '\'s turn'
   };
   if (currentPlayer === player2) {
     event.target.textContent = 'O';
     event.target.style.color = '#1f2593';
     event.target.style.backgroundColor = 'transparent';
+    message.textContent = player1 + '\'s turn'
   };
 };
 
 var changePlayer = function() {
   if (currentPlayer === player1) {
-    return currentPlayer = player2;
+    currentPlayer = player2;
   } else {
-    return currentPlayer = player1;
+    currentPlayer = player1;
   };
 };
 
@@ -203,6 +205,21 @@ var clearSquares = function() {
 
 function makeEventListeners() {
   for (var i = 0; i < squares.length; i++) {
+    // this hover state is not working properly
+    // possibly need to:
+      // set squares to false;
+      // set to true when move recorded
+
+    // squares[i].addEventListener('mouseenter', function() {
+    //   if (isEmpty()) {
+    //     event.target.textContent = currentPlayer;
+    //   };
+    // });
+    // squares[i].addEventListener('mouseout', function() {
+    //   if (isEmpty()) {
+    //     event.target.textContent = '';
+    //   };
+    // });
     squares[i].addEventListener('click', updateGame);
   };
 };
