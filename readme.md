@@ -2,7 +2,6 @@
 
 This project was coded in JavaScript, HTML and CSS.
 
-<<<<<<< HEAD
 ### Approach
 
 I thought I was a logically thinker and boy, did Tic Tac Toe show me how right-brain I actually am.
@@ -36,9 +35,6 @@ Harry hinted that if I follow the above guidelines, I am unlikely to encounter i
 ### Unsolved Problems
 
 I tried to change the hover states by adding a class and also via DOM manipulation but there was an issue with my recordMove function that is still unresolved. When the hover state changed, the move wouldn't register. I will look into this another time.
-=======
-Separation of concerns and code design were the approaches taken to solve the problem.
->>>>>>> 7a6eac7638b51788bae44194e5133a86f089c46a
 
 ### To Do List
 
@@ -55,5 +51,4 @@ Separation of concerns and code design were the approaches taken to solve the pr
 * Make the game responsive
 
 
-  
 [Play Game](https://duyen-ho.github.io/Tic-Tac-Toe/)
