@@ -51,4 +51,4 @@ I tried to change the hover states by adding a class and also via DOM manipulati
 * Make the game responsive
 
 
-[Play Game](https://duyen-ho.github.io/Tic-Tac-Toe/)
+[Play Game](https://duyenho.github.io/Tic-Tac-Toe/)
